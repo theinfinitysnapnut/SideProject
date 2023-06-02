@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         @SuppressLint("MissingInflateId")
         ImageView imageView = findViewById(R.id.gif_image);
 
+
         Glide.with(this)
                 .load(R.drawable.logo)
                 .into(imageView);
