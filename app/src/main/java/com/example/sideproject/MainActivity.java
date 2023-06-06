@@ -19,14 +19,19 @@ public class MainActivity extends AppCompatActivity {
 
    private ImageButton btnPlay;
 
-
+   MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //MediaPlayer mp = MediaPlayer.create(this, R.raw.press_button);
+        //mp.start();
+
         btnPlay = findViewById(R.id.btn_play);
+        ImageButton btnPlay = (ImageButton) findViewById(R.id.btn_play);
+
 
 
 
@@ -39,6 +44,17 @@ public class MainActivity extends AppCompatActivity {
         secondActivity.putExtra("data1",sendThisToo);
 
 
+        MediaPlayer mp = MediaPlayer.create(MainActivity.this, R.raw.press_button);
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                // TODO Auto-generated method stub
+                mp.release();
+            }
+
+        });
+
 
 
         btnPlay.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(secondActivity);
-
+                finish();
+                mp.start();
 
 
 
